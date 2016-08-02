@@ -144,7 +144,7 @@ Syncer.prototype.storeTiddler = function(tiddlerFields) {
 		revision: tiddlerFields.revision,
 		adaptorInfo: this.syncadaptor.getTiddlerInfo(tiddler),
 		changeCount: this.wiki.getChangeCount(tiddlerFields.title),
-		hasBeenLazyLoaded: true
+		hasBeenLazyLoaded: typeof tiddlerFields.text !== "undefined"
 	};
 };
 
@@ -263,7 +263,7 @@ Syncer.prototype.handleLazyLoadEvent = function(title) {
 		this.enqueueSyncTask({
 			type: "load",
 			title: title
-		});		
+		});
 	}
 };
 
